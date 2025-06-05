@@ -3,11 +3,10 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-
-$host = 'Adresse de la base de donnée';
-$dbname = 'Nom de la base de donnée';
-$username = 'Nom de l\'utilisateur';
-$password = 'mot de passe utilisateur';
+$host = 'localhost';
+$dbname = 'library';
+$username = 'root';
+$password = '';
 
 try {
     $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);

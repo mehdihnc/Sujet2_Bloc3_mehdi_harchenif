@@ -1,0 +1,18 @@
+# Fichiers système
+.DS_Store
+Thumbs.db
+
+# Fichiers de configuration sensibles
+config.php
+
+# Fichiers temporaires
+*.log
+*.tmp
+
+# Dossiers
+/vendor/
+/node_modules/
+
+# Fichiers d'environnement
+.env
+.env.* 

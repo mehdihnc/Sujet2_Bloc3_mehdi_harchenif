@@ -2,11 +2,17 @@
     require_once('config.php');
 
 
-// Récupérer le nombre total de livres
+
 $queryTotalBooks = "SELECT COUNT(*) as total_books FROM livres";
 $stmtTotalBooks = $pdo->prepare($queryTotalBooks);
 $stmtTotalBooks->execute();
 $resultTotalBooks = $stmtTotalBooks->fetch(PDO::FETCH_ASSOC);
+
+
+$queryTotalUsers = "SELECT COUNT(*) as total_users FROM users";
+$stmtTotalUsers = $pdo->prepare($queryTotalUsers);
+$stmtTotalUsers->execute();
+$resultTotalUsers = $stmtTotalUsers->fetch(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html>
@@ -20,14 +26,13 @@ $resultTotalBooks = $stmtTotalBooks->fetch(PDO::FETCH_ASSOC);
     </header>
 
 <div class="wrapper">
-        <!-- Sidebar -->
        <nav id="sidebar">
     <ul>
-        <?php if (isset($_SESSION['user'])) : ?>
-            <li>Bonjour <?= $_SESSION['prenom']; ?></li>
+        <?php if (isset($_SESSION['user_id'])) : ?>
+            <li>Bonjour <?= htmlspecialchars($_SESSION['user_prenom']); ?></li>
             <li><a href="books.php">Voir la liste des livres</a></li>
             <li><a href="profile.php">Mon profil</a></li>
-            <li><a href="logout.php">Deconnexion</a></li>
+            <li><a href="logout.php">Déconnexion</a></li>
         <?php else : ?>
             <li><a href="login.php">Connexion</a></li>
             <li><a href="register.php">Inscription</a></li>
@@ -36,11 +41,10 @@ $resultTotalBooks = $stmtTotalBooks->fetch(PDO::FETCH_ASSOC);
 </nav>
         
 
-        <!-- Page Content -->
+
         <div id="content">
             <div class="container">
                 
-                <!-- Votre contenu principal va ici -->
                 <div id="content">
                 <h1>Dashboard</h1>
     <div class="container">
@@ -54,10 +58,9 @@ $resultTotalBooks = $stmtTotalBooks->fetch(PDO::FETCH_ASSOC);
 
         <div class="statistic">
             <h3>Utilisateurs Enregistrés</h3>
-            <p><?php echo "Nombre d'utilisateur enregistré" ?></p>
+            <p><?php echo $resultTotalUsers['total_users']; ?></p>
         </div>
 
-        <!-- ... Autres statistiques ... -->
     </div>
 </div>
             </div>
