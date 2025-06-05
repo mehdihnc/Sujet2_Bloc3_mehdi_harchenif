@@ -32,6 +32,9 @@ $resultTotalUsers = $stmtTotalUsers->fetch(PDO::FETCH_ASSOC);
             <li>Bonjour <?= htmlspecialchars($_SESSION['user_prenom']); ?></li>
             <li><a href="books.php">Voir la liste des livres</a></li>
             <li><a href="profile.php">Mon profil</a></li>
+            <?php if ($_SESSION['user_role'] === 'admin') : ?>
+                <li><a href="admin/users.php">Gestion des utilisateurs</a></li>
+            <?php endif; ?>
             <li><a href="logout.php">Déconnexion</a></li>
         <?php else : ?>
             <li><a href="login.php">Connexion</a></li>
