@@ -33,3 +33,4 @@ Accédez à l'application en démarrant MAMP, WAMP, XAMP, AMPPS, LARAVEL ou autr
 
 5. **Accéder à l'Application :**
    - Ouvrez votre navigateur et allez à [http://localhost:8000](http://localhost:8000).                    
+# Sujet2_Bloc3_mehdi_harchenif
