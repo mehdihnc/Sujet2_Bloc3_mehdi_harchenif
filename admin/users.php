@@ -4,7 +4,7 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 require_once('../config.php');
 
-// Vérifier si l'utilisateur est connecté et est admin
+
 if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
     header('Location: ../login.php');
     exit();
@@ -13,10 +13,10 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
 $error = '';
 $success = '';
 
-// Traitement de la suppression d'un utilisateur
+
 if (isset($_POST['delete_user'])) {
     $user_id = $_POST['user_id'];
-    if ($user_id != $_SESSION['user_id']) { // Empêcher l'auto-suppression
+    if ($user_id != $_SESSION['user_id']) { 
         $stmt = $pdo->prepare("DELETE FROM users WHERE id = ?");
         if ($stmt->execute([$user_id])) {
             $success = "Utilisateur supprimé avec succès";
@@ -28,11 +28,11 @@ if (isset($_POST['delete_user'])) {
     }
 }
 
-// Traitement du changement de rôle
+
 if (isset($_POST['change_role'])) {
     $user_id = $_POST['user_id'];
     $new_role = $_POST['new_role'];
-    if ($user_id != $_SESSION['user_id']) { // Empêcher l'auto-modification
+    if ($user_id != $_SESSION['user_id']) {
         $stmt = $pdo->prepare("UPDATE users SET role = ? WHERE id = ?");
         if ($stmt->execute([$new_role, $user_id])) {
             $success = "Rôle modifié avec succès";
@@ -44,7 +44,6 @@ if (isset($_POST['change_role'])) {
     }
 }
 
-// Récupérer la liste des utilisateurs
 $stmt = $pdo->query("SELECT * FROM users ORDER BY date_inscription DESC");
 $users = $stmt->fetchAll();
 ?>
